@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Personal Library</title>
+  <link rel="icon" href="https://cdn.freecodecamp.org/universal/favicons/favicon-16x16.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <!-- Main stylesheet -->
+  <link rel="stylesheet" href="/public/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <h1>📚 Personal Library</h1>
+  </header>
+
+  <main class="container">
+    <!-- Test API Responses -->
+    <section class="card">
+      <h2>🔧 Test API responses</h2>
+      <form action="/api/books" method="post" class="form-group">
+        <h4>POST to <code>/api/books</code></h4>
+        <label for="title">Book Title</label>
+        <input type="text" id="title" name="title" placeholder="Enter a title">
+        <button type="submit" class="btn">Submit</button>
+      </form>
+
+      <form action="" method="post" id="commentTest" class="form-group">
+        <h4>POST to <code>/api/books/{bookid}</code></h4>
+        <label for="idinputtest">Book ID</label>
+        <input type="text" id="idinputtest" name="id" placeholder="e.g. 61234">
+        <label for="comment">Comment</label>
+        <input type="text" id="comment" name="comment" placeholder="Your comment">
+        <button type="submit" class="btn">Submit Comment</button>
+      </form>
+    </section>
+
+    <!-- Sample UI -->
+    <section class="card">
+      <h2>✨ Sample Front-End</h2>
+
+      <form id="newBookForm" class="form-inline">
+        <label for="bookTitleToAdd">New Book Title</label>
+        <input type="text" id="bookTitleToAdd" name="title" placeholder="Moby Dick">
+        <button type="submit" class="btn-primary">Add Book</button>
+      </form>
+
+      <div id="display" class="book-list"></div>
+
+      <div id="bookDetail" class="card detail-card">
+        <p id="detailTitle">Select a book to see its details and comments</p>
+        <ol id="detailComments"></ol>
+      </div>
+
+      <button id="deleteAllBooks" class="btn-danger">Delete All Books</button>
+    </section>
+  </main>
+
+  <script src="https://code.jquery.com/jquery-2.2.1.min.js"
+          integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="
+          crossorigin="anonymous"></script>
+  <script src="/public/client.js"></script>
+  <script>
+    $(function() {
+      $('#commentTest').submit(function(){
+        let id = $('#idinputtest').val().trim();
+        $(this).attr('action', "/api/books/" + id);
+      });
+    });
+  </script>
+</body>
+</html>
